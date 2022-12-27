@@ -1,6 +1,6 @@
 import express from "express";
-import { deleteModel } from "mongoose";
-import { createHotel, deleteHotel, getHotel, getHotels, updateHotel } from "../controllers/hotel.js";
+// import { deleteModel } from "mongoose";
+import { countByCity, countByType, createHotel, deleteHotel, getHotel, getHotels, updateHotel,getHotelRooms } from "../controllers/hotel.js";
 import Hotel from "../models/Hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
 
@@ -13,12 +13,14 @@ router.post("/",verifyAdmin, createHotel)
 //UPDATE
 router.put("/:id",verifyAdmin, updateHotel)
 //DELETE
-router.delete("/:id",verifyAdmin, deleteHotel)
+router.delete("/find/:id",verifyAdmin, deleteHotel)
 //GET
-router.get("/:id", getHotel)
+router.get("/find/:id", getHotel)
 //GET ALL
 router.get("/", getHotels)
-
+router.get("/countByCity", countByCity)
+router.get("/countByType", countByType)
+router.get("/room/:id", getHotelRooms)
 
 export default router
 
