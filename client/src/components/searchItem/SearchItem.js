@@ -4,7 +4,7 @@ import "./SearchItem.css"
 const SearchItem = ({item})=> {
 return (
     <div className="searchItem">
-        <img src=""
+        <img src={item.photos[0]}
         alt=""
         className="siImg"
         />

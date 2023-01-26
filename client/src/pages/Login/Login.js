@@ -34,7 +34,9 @@ const handleClick = async (e)=>{
 
 
 return (
-    <div className="login">
+    <div className="login" style={{ 
+        backgroundImage: `url("https://4kwallpapers.com/images/walls/thumbs_3t/6511.jpg")` 
+      }} >
     <div className="lContainer">
         <input
         className="lInput"

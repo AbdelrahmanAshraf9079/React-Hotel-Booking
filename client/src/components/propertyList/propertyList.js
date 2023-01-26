@@ -1,5 +1,6 @@
 import "./PropertyList.css";
 import useFetch from "../../hooks/useFetch";
+import Loading from "../../components/loading/Loading.js";
 
 const PropertyList = () => {
   const { data, loading, error } = useFetch("/hotels/countByType");
@@ -14,7 +15,7 @@ const PropertyList = () => {
   return (
     <div className="pList">
       {loading ? (
-        "Loading"
+        <Loading/>
       ) : (
         <>
           {data &&

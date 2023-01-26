@@ -21,6 +21,7 @@ import { SearchContext } from "../../context/SearchContext";
 import { parseWithOptions } from "date-fns/fp";
 import { AuthContext } from "../../context/AuthContext";
 import Reserve from "../../components/reserve/Reserve";
+import Loading  from "../../components/loading/Loading";
 
 const Hotel = () => {
   const location = useLocation();
@@ -40,26 +41,6 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
-  // const photos = [
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881660.jpg?k=c141cb0cf6b609db58337db0882fc28ab5c9e340e4392c0c6ca4c56515f1e636&o=&hp=1"
-  //   },
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881662.jpg?k=757fec0d23c67491eda63a4bce2be431a4d18e36bf9cc8c40c1bb4f789d56195&o=&hp=1"
-  //   },
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881664.jpg?k=c8cfdaaea6a5bc048be0c0b2e3534a2e228efa6f31fe694936521af20ce7ce48&o=&hp=1"
-  //   },
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881676.jpg?k=45e2b44957c151f67b222635e30ddba4e1103c7994eb9b4737bc142496a766ee&o=&hp=1"
-  //   },
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881679.jpg?k=0158c1b5b7bba1e508446de4be7e1715c53019109bba189e985fc3060cf82263&o=&hp=1"
-  //   },
-  //   {
-  //     src:"https://cf.bstatic.com/xdata/images/hotel/max1024x768/344881719.jpg?k=1dd1798cb301ced75cf7af16c6e0d5afb08c44adcf567c9f667e42ad9ddf7f03&o=&hp=1"
-  //   },
-  // ]
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -89,7 +70,7 @@ const Hotel = () => {
       <Navbar />
       <Header type="list" />
       {loading ? (
-        "loading"
+        <Loading/>
       ) : (
         <div className="hotelContainer">
           {open && (
@@ -99,13 +80,13 @@ const Hotel = () => {
                 className="close"
                 onClick={() => setOpen(false)}
               />
-              <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" />
+              <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("right") }/>
               <div className="sliderWrapper">
                 <img
                   src={data.photos[slideNumber]}
                   alt=""
                   className="sliderImg"
-                  onClick={() => handleMove("left")}
+                  onClick={() => handleMove("right")}
                 />
               </div>
               <FontAwesomeIcon
@@ -146,6 +127,9 @@ const Hotel = () => {
               <div className="hotelDetailsText">
                 <h1 className="hotelTitle">{data.title}</h1>
                 <p className="hotelDesc">{data.description}</p>
+                <span className="siFeatures">
+                {data.desc}
+              </span>
               </div>
               <div className="hotelDetailsPrice">
                 <h1>Perfect for a {days}-night stay!</h1>
